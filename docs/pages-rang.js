@@ -185,6 +185,12 @@
         AV.actifs.forEach(j => AV.badges(j).forEach(b => { if (!G.has(b.cle)) G.set(b.cle, { b, l: [] }); G.get(b.cle).l.push(j.pseudo); }));
         $('pt-badges-panel').hidden = !G.size;
         $('pt-badges').innerHTML = [...G.values()].map(({ b, l }) => `<div class="badge-group"><div class="badge-row"><i class="fa-solid ${b.icone}"></i><div><b>${esc(b.nom.replace(/ ×\d+$/, ''))}</b><span>${esc(b.desc.replace(/^\d+ /, ''))}</span></div></div><div class="mini-badges">${l.map(p => `<a class="mini-badge" href="${AV.lienProfil(p)}">${esc(p)}</a>`).join('')}</div></div>`).join('');
+        const CH = AV.chevaliers().slice().reverse();
+        $('pt-chev-panel').hidden = !CH.length;
+        $('pt-chev').innerHTML = CH.map(c => `<a class="chev-row" href="${AV.lienProfil(c.gagnant)}"><i class="fa-solid fa-crown"></i><div><b>${esc(AV.libMois(c.mois))}${c.enCours ? ' <em>en cours</em>' : ''}</b><span>${esc(c.gagnant)} · ${AV.fmtN(c.xp)} XP · ${AV.fmtN(c.quetes)} quêtes</span></div></a>`).join('');
+        const CO = AV.actifs.map(j => [j.pseudo, AV.nbSucces(j)]).filter(x => x[1]).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'fr')).slice(0, 5);
+        $('pt-coll-panel').hidden = !CO.length;
+        $('pt-coll').innerHTML = CO.map(([p, n]) => `<a class="chev-row" href="${AV.lienProfil(p)}"><i class="fa-solid fa-trophy"></i><div><b>${esc(p)}</b><span>${n} niveaux débloqués</span></div></a>`).join('');
         AV.cartes($('pantheon-grid'), R.map(x => ({ icone: x.i, titre: x.t, valeur: x.v, sub: x.s, href: AV.lienProfil(x.p), or: x.or })));
     }
     AV.routes.pantheon = () => { if (!$('pantheon-grid').children.length) pantheon(); return { page: 'page-pantheon', nav: 'page-pantheon' }; };

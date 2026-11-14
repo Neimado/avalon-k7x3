@@ -7,6 +7,11 @@
     <meta name="robots" content="noindex, nofollow">
     <title>Avalon - Dashboard</title>
     <link rel="icon" href="logo.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="apple-touch-icon" href="logo.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Avalon">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
@@ -24,6 +29,7 @@
             <button class="nav-btn" data-target="page-xp"><i class="fa-solid fa-bolt"></i><span>XP</span></button>
             <button class="nav-btn" data-target="page-quetes"><i class="fa-solid fa-scroll"></i><span>Quêtes</span></button>
             <button class="nav-btn" data-target="page-armurerie"><i class="fa-solid fa-shield-halved"></i><span>Armurerie</span></button>
+            <button class="nav-btn" data-target="page-guilde"><i class="fa-solid fa-users"></i><span>Guilde</span></button>
             <button class="nav-btn" data-target="page-pantheon"><i class="fa-solid fa-crown"></i><span>Panthéon</span></button>
         </div>
         <div class="nav-spacer"></div>
@@ -104,11 +110,22 @@
             <div class="armory-grid" id="armory-grid"></div>
         </section>
 
+        <!-- GUILDE -->
+        <section id="page-guilde" class="page-section">
+            <header class="hero small"><h1>La Guilde</h1><p class="subtitle">Ce qu'on construit ensemble</p></header>
+            <div class="profile-tiles" id="gu-tiles"></div>
+            <div class="panel"><h2 class="panel-title">Objectifs collectifs</h2><p class="panel-hint">Chaque XP et chaque quête comptent pour tout le monde.</p><div id="gu-goals"></div></div>
+            <div class="panel"><h2 class="panel-title">XP de la guilde par semaine</h2><div class="chart-container"><canvas id="gu-c-xp"></canvas></div></div>
+            <div class="panel"><h2 class="panel-title">Quêtes de la guilde par semaine</h2><div class="chart-container"><canvas id="gu-c-q"></canvas></div></div>
+        </section>
+
         <!-- PANTHÉON -->
         <section id="page-pantheon" class="page-section">
             <header class="hero small"><h1>Le Panthéon</h1><p class="subtitle">Les records d'Avalon</p></header>
             <div class="stats-grid" id="pantheon-grid"></div>
-            <div class="panel" id="pt-badges-panel" hidden><h2 class="panel-title">Badges en cours</h2><p class="panel-hint">Les récompenses actuellement portées par les chevaliers actifs.</p><div id="pt-badges"></div></div>
+            <div class="panel" id="pt-chev-panel" hidden><h2 class="panel-title">Chevalier du mois</h2><p class="panel-hint">Calculé sur l'XP et les quêtes du mois, chacun comparé au meilleur de la guilde.</p><div id="pt-chev"></div></div>
+            <div class="panel" id="pt-coll-panel" hidden><h2 class="panel-title">Collectionneurs de succès</h2><p class="panel-hint">Le nombre de niveaux de succès débloqués.</p><div id="pt-coll"></div></div>
+            <div class="panel" id="pt-badges-panel" hidden><h2 class="panel-title">Séries en cours</h2><p class="panel-hint">Les récompenses actuellement portées par les chevaliers actifs.</p><div id="pt-badges"></div></div>
         </section>
 
         <!-- PROFIL -->
@@ -130,7 +147,9 @@
                 <div class="panel" id="pf-p3"><h2 class="panel-title" id="pf-t3">-</h2><div class="chart-container short"><canvas id="pf-c3"></canvas></div></div>
             </div>
             <p class="empty chart-note" hidden>Les graphiques ont besoin d'une connexion internet pour s'afficher.</p>
-            <div class="panel" id="pf-badges-panel"><h2 class="panel-title">Badges</h2><p class="panel-hint">Récompenses en cours, elles se mettent à jour à chaque relevé.</p><div class="badge-list" id="pf-badges"></div></div>
+            <div class="panel" id="pf-heat-panel"><h2 class="panel-title">Régularité</h2><p class="panel-hint">Une case par semaine : plus elle est claire, plus la semaine était active.</p><div class="heat-wrap"><div class="heat" id="pf-heat"></div></div></div>
+            <div class="panel" id="pf-succes-panel"><h2 class="panel-title">Succès</h2><p class="panel-hint">Ils sont à vie : rien ne se perd, on ne fait que monter de niveau.</p><div class="succes-list" id="pf-succes"></div></div>
+            <div class="panel" id="pf-badges-panel"><h2 class="panel-title">Séries en cours</h2><p class="panel-hint">Récompenses du moment, elles se mettent à jour à chaque relevé.</p><div class="badge-list" id="pf-badges"></div></div>
             <div class="panel"><h2 class="panel-title">Archives mensuelles</h2><p class="panel-hint">Choisis un mois pour voir ses graphiques et ses stats.</p><div id="pf-archive"></div></div>
             <div class="panel" id="pf-rel"><h2 class="panel-title">Historique des relevés de rang</h2>
                 <table class="history-table"><thead><tr><th>Date</th><th>Rang</th><th>Mouvement</th></tr></thead><tbody id="pf-history"></tbody></table>
@@ -169,11 +188,15 @@
     <script src="data.js"></script>
     <script src="core.js"></script>
     <script src="stats.js"></script>
+    <script src="succes.js"></script>
     <script src="pages-rang.js"></script>
     <script src="activite.js"></script>
     <script src="profil.js"></script>
     <script src="mois.js"></script>
     <script src="duel.js"></script>
+    <script src="guilde.js"></script>
+    <script src="recherche.js"></script>
     <script src="app.js"></script>
+    <script>if ("serviceWorker" in navigator && location.protocol.indexOf("http") === 0) navigator.serviceWorker.register("sw.js").catch(function () {});</script>
 </body>
 </html>

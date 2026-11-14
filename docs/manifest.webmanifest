@@ -1,0 +1,13 @@
+{
+  "name": "Avalon - Leveling Fitness",
+  "short_name": "Avalon",
+  "description": "Dashboard de la guilde Avalon",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#09090b",
+  "theme_color": "#09090b",
+  "icons": [
+    { "src": "logo.png", "sizes": "any", "type": "image/png", "purpose": "any" }
+  ]
+}

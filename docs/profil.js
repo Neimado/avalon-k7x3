@@ -122,6 +122,14 @@
         $('pf-pseudo').textContent = j.pseudo;
         const b = $('pf-badge'); b.textContent = j.actif ? 'Actif' : 'Ancien'; b.className = 'badge' + (j.actif ? '' : ' off');
         $('pf-sub').textContent = `Dernière donnée le ${AV.fmtDate(j.derniere_activite)}`;
+        AV.calendrier(j);
+        const sc = AV.succes(j), tm = AV.titresMois(j.pseudo);
+        $('pf-succes-panel').hidden = !sc.length;
+        const barre = (x) => x.prochain === null ? '<span class="sc-max">Niveau max</span>'
+            : x.inverse ? `<span class="sc-next">Prochain : top ${AV.fmtN(x.prochain)}</span>`
+            : `<div class="sc-bar"><i style="width:${x.pct}%"></i></div><span class="sc-next">${AV.fmtN(x.valeur)} / ${AV.fmtN(x.prochain)} ${esc(x.unite)}</span>`;
+        $('pf-succes').innerHTML = (tm ? `<div class="succes-row got"><i class="fa-solid fa-crown"></i><div><b>Chevalier du mois <em>×${tm}</em></b><span class="sc-next">Meilleur de la guilde sur un mois</span></div></div>` : '') +
+            sc.map(x => `<div class="succes-row${x.niveau ? ' got' : ''}"><i class="fa-solid ${x.icone}"></i><div><b>${esc(x.nom)}${x.niveau ? ` <em>Niv. ${AV.romain(x.niveau)}</em>` : ''}</b>${barre(x)}</div></div>`).join('');
         const bd = AV.badges(j);
         $('pf-badges-panel').hidden = !bd.length;
         $('pf-badges').innerHTML = bd.map(x => `<div class="badge-row"><i class="fa-solid ${x.icone}"></i><div><b>${esc(x.nom)}</b><span>${esc(x.desc)}</span></div></div>`).join('');
