@@ -1,6 +1,6 @@
 {
-  "name": "Avalon - Leveling Fitness",
-  "short_name": "Avalon",
+  "name": "Avalon Dashboard",
+  "short_name": "Avalon Dashboard",
   "description": "Dashboard de la guilde Avalon",
   "start_url": "./index.html",
   "scope": "./",
