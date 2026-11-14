@@ -158,6 +158,7 @@ window.AV = (function () {
         document.querySelectorAll('.nav-btn').forEach(b => b.classList.toggle('active', b.dataset.target === r.nav));
         document.querySelectorAll('.page-section').forEach(p => p.classList.toggle('active', p.id === r.page));
         window.scrollTo(0, 0);
+        const zone = document.querySelector('main.container'); if (zone) zone.scrollTop = 0;   // téléphone : c'est cette zone qui défile
         AV.noteChart();
     };
     AV.demarrer = () => {

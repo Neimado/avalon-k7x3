@@ -818,3 +818,15 @@ canvas { max-width: 100%; }
     .history-table th, .history-table td { overflow-wrap: anywhere; padding-left: 0.2rem; padding-right: 0.2rem; }
 }
 @media (max-width: 760px) { .nav-btn { font-size: 0.58rem; letter-spacing: 0; } .nav-btn i { font-size: 1.15rem; } }
+
+/* ---------- Téléphone : mise en page "application" (v5.2) ----------
+   La page elle-même ne défile plus : seule la zone de contenu défile, entre la barre du haut et le menu du bas.
+   Résultat : le menu ne bouge plus quand la barre d'adresse du navigateur se cache, et plus de bande blanche. */
+@media (max-width: 760px) {
+    html, body { height: 100%; overflow: hidden; overscroll-behavior: none; }
+    body { display: flex; flex-direction: column; height: 100vh; height: 100dvh; min-height: 0; }
+    .navbar { position: relative; flex: none; }
+    main.container { flex: 1 1 auto; min-height: 0; width: 100%; overflow-x: hidden; overflow-y: auto; -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain; touch-action: pan-y; }
+    .nav-links { position: fixed; left: 0; right: 0; bottom: 0; }
+}
