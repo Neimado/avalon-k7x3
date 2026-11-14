@@ -3,7 +3,7 @@ chcp 65001 >nul
 set PYTHONIOENCODING=utf-8
 cd /d "%~dp0"
 
-echo === Etape 1 : ajout des nouveaux scores ===
+echo === Etape 1 : ajout des nouvelles donnees (rangs, XP, quetes) ===
 python injection_json.py
 if errorlevel 1 goto erreur
 
@@ -15,7 +15,7 @@ if errorlevel 1 goto erreur
 if exist ".git" (
     echo.
     echo === Etape 3 : mise en ligne ===
-    git add docs
+    git add .
     git commit -m "Mise a jour %date%"
     git push
     if errorlevel 1 goto erreur

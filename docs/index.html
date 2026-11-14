@@ -13,35 +13,25 @@
 </head>
 <body>
 
-    <!-- BARRE DU HAUT (en bas de l'écran sur téléphone) -->
     <nav class="navbar">
         <a class="nav-brand" href="#classement">
             <img src="logo.png" alt="" class="nav-logo" onerror="this.style.display='none'">
             <span>AVALON</span>
         </a>
-
         <div class="nav-links">
-            <button class="nav-btn active" data-target="page-classement">
-                <i class="fa-solid fa-trophy"></i><span>Classement</span>
-            </button>
-            <button class="nav-btn" data-target="page-stats">
-                <i class="fa-solid fa-chart-line"></i>
-                <span class="lbl-full">Rapport de Bataille</span><span class="lbl-short">Rapport</span>
-            </button>
-            <button class="nav-btn" data-target="page-armurerie">
-                <i class="fa-solid fa-shield-halved"></i><span>Armurerie</span>
-            </button>
-            <button class="nav-btn" data-target="page-pantheon">
-                <i class="fa-solid fa-crown"></i><span>Panthéon</span>
-            </button>
+            <button class="nav-btn active" data-target="page-classement"><i class="fa-solid fa-trophy"></i><span>Classement</span></button>
+            <button class="nav-btn" data-target="page-stats"><i class="fa-solid fa-chart-line"></i><span class="lbl-full">Rapport de Bataille</span><span class="lbl-short">Rapport</span></button>
+            <button class="nav-btn" data-target="page-xp"><i class="fa-solid fa-bolt"></i><span>XP</span></button>
+            <button class="nav-btn" data-target="page-quetes"><i class="fa-solid fa-scroll"></i><span>Quêtes</span></button>
+            <button class="nav-btn" data-target="page-armurerie"><i class="fa-solid fa-shield-halved"></i><span>Armurerie</span></button>
+            <button class="nav-btn" data-target="page-pantheon"><i class="fa-solid fa-crown"></i><span>Panthéon</span></button>
         </div>
-
         <div class="nav-spacer"></div>
     </nav>
 
     <main class="container">
 
-        <!-- PAGE 1 : CLASSEMENT -->
+        <!-- CLASSEMENT -->
         <section id="page-classement" class="page-section active">
             <header class="hero">
                 <img src="logo.png" alt="Logo Avalon" class="logo" onerror="this.style.display='none'">
@@ -49,195 +39,141 @@
                 <p class="subtitle">Serveur Leveling Fitness</p>
                 <p class="last-update">Dernière mise à jour : <span id="date-maj">...</span></p>
             </header>
-
             <div class="toolbar">
-                <div class="search-box">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="search" id="search-input" placeholder="Rechercher un chevalier..." autocomplete="off">
-                </div>
-                <p class="hint">Touche un chevalier pour ouvrir son profil</p>
+                <div class="search-box"><i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" id="search-input" placeholder="Rechercher un chevalier..." autocomplete="off"></div>
+                <p class="hint" id="cl-periode"></p>
             </div>
-
             <table class="ranking-table">
-                <thead>
-                    <tr>
-                        <th class="col-pos">Place</th>
-                        <th>Chevalier</th>
-                        <th>Rang mondial</th>
-                        <th>Progression</th>
-                    </tr>
-                </thead>
+                <thead><tr><th class="col-pos">Place</th><th>Chevalier</th><th>Rang mondial</th><th>Progression</th></tr></thead>
                 <tbody id="table-body"></tbody>
             </table>
             <p id="empty-search" class="empty" hidden>Aucun chevalier ne porte ce nom.</p>
         </section>
 
-        <!-- PAGE 2 : RAPPORT DE BATAILLE -->
+        <!-- RAPPORT DE BATAILLE (rangs) -->
         <section id="page-stats" class="page-section">
-            <header class="hero small">
-                <h1>Rapport de Bataille</h1>
-                <p class="subtitle">Le dernier mouvement de chaque chevalier</p>
-            </header>
-
-            <div class="stats-grid" id="cur-cards"></div>
-
-            <div class="panel">
-                <h2 class="panel-title">Mouvements de la guilde</h2>
-                <div class="chart-container" id="bar-wrapper">
-                    <canvas id="barChart"></canvas>
-                </div>
-                <p class="empty" id="bar-empty" hidden>Pas encore de mouvement à afficher.</p>
+            <p class="empty" id="st-aucun" hidden>Pas encore assez de relevés de rang pour un rapport.</p>
+            <div id="st-contenu">
+                <header class="hero small"><h1>Rapport de Bataille</h1><p class="subtitle" id="st-titre">-</p><p class="last-update" id="st-sub"></p></header>
+                <div class="pager"><a id="st-prev" href="#">&lsaquo; Semaine précédente</a><a id="st-next" href="#">Semaine suivante &rsaquo;</a></div>
+                <div class="actions"><button class="btn" id="st-share"><i class="fa-solid fa-image"></i> Image à partager</button></div>
+                <div class="panel" id="st-podium-wrap"><h2 class="panel-title">Podium de la semaine</h2><div class="podium" id="st-podium"></div></div>
+                <div class="stats-grid" id="st-cards"></div>
+                <div class="panel"><h2 class="panel-title">Mouvements de la guilde</h2>
+                    <div class="chart-container" id="st-wrapper"><canvas id="st-chart"></canvas></div>
+                    <p class="empty" id="st-empty" hidden>Aucun mouvement à comparer.</p></div>
+                <div class="panel"><h2 class="panel-title">Détail par chevalier</h2>
+                    <table class="history-table"><thead><tr><th>Chevalier</th><th>Rang</th><th>Mouvement</th></tr></thead><tbody id="st-table"></tbody></table></div>
+                <div class="panel"><h2 class="panel-title">Archives hebdomadaires</h2><p class="panel-hint">Le résumé de chaque semaine passée.</p><div id="st-archive"></div></div>
+                <p class="empty chart-note" hidden>Les graphiques ont besoin d'une connexion internet pour s'afficher.</p>
             </div>
-
-            <div class="panel">
-                <h2 class="panel-title">Archives hebdomadaires</h2>
-                <p class="panel-hint">Retrouve le résumé de chaque semaine passée.</p>
-                <div id="week-archive"></div>
-            </div>
-            <p class="empty chart-note" hidden>Les graphiques ont besoin d'une connexion internet pour s'afficher.</p>
         </section>
 
-        <!-- PAGE 2 bis : RÉSUMÉ D'UNE SEMAINE -->
-        <section id="page-semaine" class="page-section">
-            <a class="back-link" href="#stats"><i class="fa-solid fa-arrow-left"></i> Retour au Rapport de Bataille</a>
-            <header class="hero small">
-                <h1 id="wk-titre">-</h1>
-                <p class="subtitle" id="wk-sub">-</p>
-            </header>
-
-            <div class="pager">
-                <a id="wk-prev" href="#stats">&lsaquo; Semaine précédente</a>
-                <a id="wk-next" href="#stats">Semaine suivante &rsaquo;</a>
-            </div>
-
-            <div class="stats-grid" id="wk-cards"></div>
-
-            <div class="panel">
-                <h2 class="panel-title">Mouvements de la semaine</h2>
-                <div class="chart-container" id="wk-wrapper">
-                    <canvas id="wk-chart"></canvas>
+        <!-- XP / QUÊTES (page commune) -->
+        <section id="page-act" class="page-section">
+            <p class="empty" id="act-aucun" hidden>Pas encore de données de <span id="act-aucun-titre">-</span>.</p>
+            <div id="act-contenu">
+                <header class="hero small"><h1 id="act-h1">Expérience</h1><p class="subtitle" id="act-titre">-</p><p class="last-update" id="act-sub"></p></header>
+                <div class="range-group centered" id="act-switch"><a class="range-btn" data-type="xp" href="#xp">XP</a><a class="range-btn" data-type="quetes" href="#quetes">Quêtes</a></div>
+                <div class="act-toolbar">
+                    <div class="range-group" id="act-modes">
+                        <button class="range-btn" data-mode="sem">Semaine</button><button class="range-btn" data-mode="4s">4 semaines</button>
+                        <button class="range-btn" data-mode="mois">Mois</button><button class="range-btn" data-mode="tout">Depuis le début</button></div>
+                    <label class="select-wrap" id="act-mois-wrap" hidden><select id="act-mois"></select></label>
                 </div>
-                <p class="empty" id="wk-empty" hidden>Aucun mouvement à comparer cette semaine.</p>
+                <div class="pager" id="act-pager"><a id="act-prev" href="#">&lsaquo; Précédent</a><a id="act-next" href="#">Suivant &rsaquo;</a></div>
+                <div class="actions"><button class="btn" id="act-share"><i class="fa-solid fa-image"></i> Image à partager</button></div>
+                <div class="panel"><h2 class="panel-title">Podium</h2><div class="podium" id="act-podium"></div></div>
+                <div class="stats-grid" id="act-cards"></div>
+                <div class="panel"><h2 class="panel-title">Comparaison par chevalier</h2><div class="chart-container" id="act-wrapper"><canvas id="act-chart"></canvas></div></div>
+                <div class="panel"><h2 class="panel-title">Détail</h2>
+                    <table class="history-table"><thead><tr><th>#</th><th>Chevalier</th><th id="act-th">XP</th><th>Évolution</th></tr></thead><tbody id="act-table"></tbody></table></div>
+                <div class="panel"><h2 class="panel-title">Archives hebdomadaires</h2><p class="panel-hint">Retrouve chaque semaine passée.</p><div id="act-archive"></div></div>
+                <p class="empty chart-note" hidden>Les graphiques ont besoin d'une connexion internet pour s'afficher.</p>
             </div>
-
-            <div class="panel">
-                <h2 class="panel-title">Détail par chevalier</h2>
-                <table class="history-table">
-                    <thead><tr><th>Chevalier</th><th>Rang</th><th>Mouvement</th></tr></thead>
-                    <tbody id="wk-table"></tbody>
-                </table>
-            </div>
-            <p class="empty chart-note" hidden>Les graphiques ont besoin d'une connexion internet pour s'afficher.</p>
         </section>
 
-        <!-- PAGE 3 : ARMURERIE -->
+        <!-- ARMURERIE -->
         <section id="page-armurerie" class="page-section">
-            <header class="hero small">
-                <h1>L'Armurerie</h1>
-                <p class="subtitle">Touche un chevalier pour voir son profil</p>
-            </header>
+            <header class="hero small"><h1>L'Armurerie</h1><p class="subtitle">Touche un chevalier pour voir son profil</p></header>
+            <div class="actions"><a class="btn" href="#duel"><i class="fa-solid fa-right-left"></i> Comparer deux chevaliers</a></div>
+            <div class="archive-controls"><div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="search" id="arm-search" placeholder="Chercher un chevalier..." autocomplete="off"></div></div>
+            <div class="tabs" id="arm-tabs"><button class="tab active" data-g="actifs">Actifs <span id="arm-n1"></span></button><button class="tab" data-g="anciens">Anciens <span id="arm-n2"></span></button></div>
+            <p class="panel-hint center" id="arm-hint" hidden></p>
             <div class="armory-grid" id="armory-grid"></div>
         </section>
 
-        <!-- PAGE 4 : PANTHÉON -->
+        <!-- PANTHÉON -->
         <section id="page-pantheon" class="page-section">
-            <header class="hero small">
-                <h1>Le Panthéon</h1>
-                <p class="subtitle">Les records d'Avalon</p>
-            </header>
+            <header class="hero small"><h1>Le Panthéon</h1><p class="subtitle">Les records d'Avalon</p></header>
             <div class="stats-grid" id="pantheon-grid"></div>
+            <div class="panel" id="pt-badges-panel" hidden><h2 class="panel-title">Badges en cours</h2><p class="panel-hint">Les récompenses actuellement portées par les chevaliers actifs.</p><div id="pt-badges"></div></div>
         </section>
 
-        <!-- PAGE 5 : PROFIL D'UN CHEVALIER -->
+        <!-- PROFIL -->
         <section id="page-profil" class="page-section">
             <a class="back-link" href="#armurerie"><i class="fa-solid fa-arrow-left"></i> Retour à l'Armurerie</a>
-
             <header class="profile-hero">
                 <div class="avatar" id="pf-avatar">?</div>
-                <div>
-                    <h1 id="pf-pseudo">-</h1>
-                    <div class="pf-meta">
-                        <span class="badge" id="pf-badge"></span>
-                        <span id="pf-sub"></span>
-                    </div>
-                </div>
+                <div><h1 id="pf-pseudo">-</h1><div class="pf-meta"><span class="badge" id="pf-badge"></span><span id="pf-sub"></span></div></div>
             </header>
-
+            <div class="tabs" id="pf-tabs"></div>
             <div class="profile-tiles" id="pf-tiles"></div>
-
             <div class="panel">
-                <div class="panel-head">
-                    <h2 class="panel-title">Évolution du rang</h2>
-                    <div class="range-group" id="pf-range" role="group" aria-label="Période"></div>
-                </div>
-                <div class="chart-container"><canvas id="pf-chart-rank"></canvas></div>
+                <div class="panel-head"><h2 class="panel-title" id="pf-t1">-</h2>
+                    <div class="range-group" id="pf-range"></div></div>
+                <div class="chart-container"><canvas id="pf-c1"></canvas></div>
             </div>
-
             <div class="two-col">
-                <div class="panel">
-                    <h2 class="panel-title">Places gagnées par relevé</h2>
-                    <div class="chart-container short"><canvas id="pf-chart-gains"></canvas></div>
-                </div>
-                <div class="panel">
-                    <h2 class="panel-title">Courbe des records</h2>
-                    <div class="chart-container short"><canvas id="pf-chart-record"></canvas></div>
-                </div>
+                <div class="panel"><h2 class="panel-title" id="pf-t2">-</h2><div class="chart-container short"><canvas id="pf-c2"></canvas></div></div>
+                <div class="panel" id="pf-p3"><h2 class="panel-title" id="pf-t3">-</h2><div class="chart-container short"><canvas id="pf-c3"></canvas></div></div>
             </div>
             <p class="empty chart-note" hidden>Les graphiques ont besoin d'une connexion internet pour s'afficher.</p>
-
-            <div class="panel">
-                <h2 class="panel-title">Archives mensuelles</h2>
-                <p class="panel-hint">Choisis un mois pour voir ses graphiques et ses stats.</p>
-                <div id="pf-archive"></div>
-            </div>
-
-            <div class="panel">
-                <h2 class="panel-title">Historique des relevés</h2>
-                <table class="history-table">
-                    <thead><tr><th>Date</th><th>Rang</th><th>Mouvement</th></tr></thead>
-                    <tbody id="pf-history"></tbody>
-                </table>
-                <button class="show-all" id="pf-show-all" hidden>Afficher tout l'historique</button>
-            </div>
+            <div class="panel" id="pf-badges-panel"><h2 class="panel-title">Badges</h2><p class="panel-hint">Récompenses en cours, elles se mettent à jour à chaque relevé.</p><div class="badge-list" id="pf-badges"></div></div>
+            <div class="panel"><h2 class="panel-title">Archives mensuelles</h2><p class="panel-hint">Choisis un mois pour voir ses graphiques et ses stats.</p><div id="pf-archive"></div></div>
+            <div class="panel" id="pf-rel"><h2 class="panel-title">Historique des relevés de rang</h2>
+                <table class="history-table"><thead><tr><th>Date</th><th>Rang</th><th>Mouvement</th></tr></thead><tbody id="pf-history"></tbody></table>
+                <button class="show-all" id="pf-show-all" hidden>Afficher tout l'historique</button></div>
         </section>
 
-        <!-- PAGE 5 bis : UN MOIS D'UN CHEVALIER -->
+        <!-- UN MOIS D'UN CHEVALIER -->
         <section id="page-mois" class="page-section">
             <a class="back-link" id="mo-back" href="#armurerie"><i class="fa-solid fa-arrow-left"></i> Retour au profil</a>
-            <header class="hero small">
-                <h1 id="mo-titre">-</h1>
-                <p class="subtitle" id="mo-sub">-</p>
-            </header>
-
-            <div class="pager">
-                <a id="mo-prev" href="#armurerie">&lsaquo; Mois précédent</a>
-                <a id="mo-next" href="#armurerie">Mois suivant &rsaquo;</a>
-            </div>
-
+            <header class="hero small"><h1 id="mo-titre">-</h1><p class="subtitle" id="mo-sub">-</p></header>
+            <div class="pager"><a id="mo-prev" href="#">&lsaquo; Mois précédent</a><a id="mo-next" href="#">Mois suivant &rsaquo;</a></div>
             <div class="profile-tiles" id="mo-tiles"></div>
-
-            <div class="panel">
-                <h2 class="panel-title">Évolution du rang</h2>
-                <div class="chart-container"><canvas id="mo-chart-rank"></canvas></div>
-            </div>
-            <div class="panel">
-                <h2 class="panel-title">Places gagnées par relevé</h2>
-                <div class="chart-container short"><canvas id="mo-chart-gains"></canvas></div>
-            </div>
+            <div class="panel" id="mo-p-rang"><h2 class="panel-title">Évolution du rang</h2><div class="chart-container"><canvas id="mo-c-rank"></canvas></div></div>
+            <div class="panel" id="mo-p-gains"><h2 class="panel-title">Places gagnées par relevé</h2><div class="chart-container short"><canvas id="mo-c-gains"></canvas></div></div>
+            <div class="panel" id="mo-p-xp"><h2 class="panel-title">XP par semaine</h2><div class="chart-container short"><canvas id="mo-c-xp"></canvas></div></div>
+            <div class="panel" id="mo-p-q"><h2 class="panel-title">Quêtes par semaine</h2><div class="chart-container short"><canvas id="mo-c-q"></canvas></div></div>
             <p class="empty chart-note" hidden>Les graphiques ont besoin d'une connexion internet pour s'afficher.</p>
+            <div class="panel" id="mo-p-table"><h2 class="panel-title">Relevés du mois</h2>
+                <table class="history-table"><thead><tr><th>Date</th><th>Rang</th><th>Mouvement</th></tr></thead><tbody id="mo-table"></tbody></table></div>
+        </section>
 
-            <div class="panel">
-                <h2 class="panel-title">Relevés du mois</h2>
-                <table class="history-table">
-                    <thead><tr><th>Date</th><th>Rang</th><th>Mouvement</th></tr></thead>
-                    <tbody id="mo-table"></tbody>
-                </table>
-            </div>
+        <!-- DUEL -->
+        <section id="page-duel" class="page-section">
+            <a class="back-link" href="#armurerie"><i class="fa-solid fa-arrow-left"></i> Retour à l'Armurerie</a>
+            <header class="hero small"><h1>Comparer</h1><p class="subtitle">Deux chevaliers côte à côte</p></header>
+            <div class="duel-pick"><select id="du-a"></select><span>et</span><select id="du-b"></select></div>
+            <div class="panel"><table class="history-table duel-table"><thead><tr><th></th><th id="du-nom-a">-</th><th id="du-nom-b">-</th></tr></thead><tbody id="du-table"></tbody></table></div>
+            <div class="panel" id="du-p-rang"><h2 class="panel-title">Évolution du rang</h2><div class="chart-container"><canvas id="du-c-rang"></canvas></div></div>
+            <div class="panel" id="du-p-xp"><h2 class="panel-title">XP par semaine</h2><div class="chart-container"><canvas id="du-c-xp"></canvas></div></div>
+            <div class="panel" id="du-p-q"><h2 class="panel-title">Quêtes par semaine</h2><div class="chart-container"><canvas id="du-c-q"></canvas></div></div>
+            <p class="empty chart-note" hidden>Les graphiques ont besoin d'une connexion internet pour s'afficher.</p>
         </section>
 
     </main>
 
     <script src="data.js"></script>
+    <script src="core.js"></script>
+    <script src="stats.js"></script>
+    <script src="pages-rang.js"></script>
+    <script src="activite.js"></script>
+    <script src="profil.js"></script>
+    <script src="mois.js"></script>
+    <script src="duel.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
