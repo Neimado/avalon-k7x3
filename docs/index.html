@@ -30,7 +30,7 @@
             <button class="nav-btn" data-target="page-quetes"><i class="fa-solid fa-scroll"></i><span>Quêtes</span></button>
             <button class="nav-btn" data-target="page-armurerie"><i class="fa-solid fa-shield-halved"></i><span>Armurerie</span></button>
             <button class="nav-btn" data-target="page-guilde"><i class="fa-solid fa-users"></i><span>Guilde</span></button>
-            <button class="nav-btn" data-target="page-pantheon"><i class="fa-solid fa-crown"></i><span>Panthéon</span></button>
+            <button class="nav-btn" data-target="page-guide"><i class="fa-solid fa-book-open"></i><span>Guide</span></button>
         </div>
         <div class="nav-spacer"></div>
     </nav>
@@ -54,6 +54,7 @@
                 <thead><tr><th class="col-pos">Place</th><th>Chevalier</th><th>Rang mondial</th><th>Progression</th></tr></thead>
                 <tbody id="table-body"></tbody>
             </table>
+            <p class="panel-hint center">La petite date à côté d'un rang indique le dernier relevé connu quand il date de plus de 9 jours.</p>
             <p id="empty-search" class="empty" hidden>Aucun chevalier ne porte ce nom.</p>
         </section>
 
@@ -113,15 +114,20 @@
         <!-- GUILDE -->
         <section id="page-guilde" class="page-section">
             <header class="hero small"><h1>La Guilde</h1><p class="subtitle">Ce qu'on construit ensemble</p></header>
+            <div class="tabs"><a class="tab active" href="#guilde">Vue d'ensemble</a><a class="tab" href="#pantheon">Panthéon</a></div>
             <div class="profile-tiles" id="gu-tiles"></div>
             <div class="panel"><h2 class="panel-title">Objectifs collectifs</h2><p class="panel-hint">Chaque XP et chaque quête comptent pour tout le monde.</p><div id="gu-goals"></div></div>
             <div class="panel"><h2 class="panel-title">XP de la guilde par semaine</h2><div class="chart-container"><canvas id="gu-c-xp"></canvas></div></div>
             <div class="panel"><h2 class="panel-title">Quêtes de la guilde par semaine</h2><div class="chart-container"><canvas id="gu-c-q"></canvas></div></div>
         </section>
 
+        <!-- GUIDE -->
+        <section id="page-guide" class="page-section"><div id="guide-root"></div></section>
+
         <!-- PANTHÉON -->
         <section id="page-pantheon" class="page-section">
             <header class="hero small"><h1>Le Panthéon</h1><p class="subtitle">Les records d'Avalon</p></header>
+            <div class="tabs"><a class="tab" href="#guilde">Vue d'ensemble</a><a class="tab active" href="#pantheon">Panthéon</a></div>
             <div class="stats-grid" id="pantheon-grid"></div>
             <div class="panel" id="pt-chev-panel" hidden><h2 class="panel-title">Chevalier du mois</h2><p class="panel-hint">Calculé sur l'XP et les quêtes du mois, chacun comparé au meilleur de la guilde.</p><div id="pt-chev"></div></div>
             <div class="panel" id="pt-coll-panel" hidden><h2 class="panel-title">Collectionneurs de succès</h2><p class="panel-hint">Le nombre de niveaux de succès débloqués.</p><div id="pt-coll"></div></div>
@@ -148,6 +154,7 @@
             </div>
             <p class="empty chart-note" hidden>Les graphiques ont besoin d'une connexion internet pour s'afficher.</p>
             <div class="panel" id="pf-heat-panel"><h2 class="panel-title">Régularité</h2><p class="panel-hint">Une case par semaine : plus elle est claire, plus la semaine était active.</p><div class="heat-wrap"><div class="heat" id="pf-heat"></div></div></div>
+            <div class="panel" id="pf-carte-panel"><h2 class="panel-title">Carte de chevalier</h2><p class="panel-hint">Ta carte à collectionner : sa rareté grandit avec tes succès. Télécharge-la ou partage-la.</p><button class="btn" id="pf-carte" type="button"><i class="fa-solid fa-id-card"></i> Obtenir ma carte</button></div>
             <div class="panel" id="pf-succes-panel"><h2 class="panel-title">Succès</h2><p class="panel-hint">Ils sont à vie : rien ne se perd, on ne fait que monter de niveau.</p><div class="succes-list" id="pf-succes"></div></div>
             <div class="panel" id="pf-badges-panel"><h2 class="panel-title">Séries en cours</h2><p class="panel-hint">Récompenses du moment, elles se mettent à jour à chaque relevé.</p><div class="badge-list" id="pf-badges"></div></div>
             <div class="panel"><h2 class="panel-title">Archives mensuelles</h2><p class="panel-hint">Choisis un mois pour voir ses graphiques et ses stats.</p><div id="pf-archive"></div></div>
@@ -195,6 +202,11 @@
     <script src="mois.js"></script>
     <script src="duel.js"></script>
     <script src="guilde.js"></script>
+    <script src="guide-tech-1.js"></script>
+    <script src="guide-tech-2.js"></script>
+    <script src="guide-data-2.js"></script>
+    <script src="guide.js"></script>
+    <script src="carte.js"></script>
     <script src="recherche.js"></script>
     <script src="app.js"></script>
     <script>if ("serviceWorker" in navigator && location.protocol.indexOf("http") === 0) navigator.serviceWorker.register("sw.js").catch(function () {});</script>

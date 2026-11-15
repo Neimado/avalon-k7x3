@@ -58,7 +58,7 @@
         membresRang.forEach(({ j, der }, i) => {
             if (q && !AV.norm(j.pseudo).includes(q)) return;
             const pos = i + 1, d = Sref ? AV.deltaSem(j, Sref) : null;
-            const vieux = AV.diffJ(AV.ref, der.date) > 9 ? ` <small class="old">${AV.fmtCourt(der.date)}</small>` : '';
+            const vieux = AV.diffJ(AV.ref, der.date) > 9 ? ` <small class="old" title="Dernier rang connu : relevé du ${AV.fmtCourt(der.date)}">${AV.fmtCourt(der.date)}</small>` : '';
             const tr = document.createElement('tr');
             tr.tabIndex = 0; tr.setAttribute('role', 'link');
             tr.style.animationDelay = `${Math.min(n, 15) * 0.04}s`;
@@ -193,5 +193,5 @@
         $('pt-coll').innerHTML = CO.map(([p, n]) => `<a class="chev-row" href="${AV.lienProfil(p)}"><i class="fa-solid fa-trophy"></i><div><b>${esc(p)}</b><span>${n} niveaux débloqués</span></div></a>`).join('');
         AV.cartes($('pantheon-grid'), R.map(x => ({ icone: x.i, titre: x.t, valeur: x.v, sub: x.s, href: AV.lienProfil(x.p), or: x.or })));
     }
-    AV.routes.pantheon = () => { if (!$('pantheon-grid').children.length) pantheon(); return { page: 'page-pantheon', nav: 'page-pantheon' }; };
+    AV.routes.pantheon = () => { if (!$('pantheon-grid').children.length) pantheon(); return { page: 'page-pantheon', nav: 'page-guilde' }; };
 })();

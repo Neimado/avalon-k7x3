@@ -124,6 +124,7 @@
         $('pf-sub').textContent = `Dernière donnée le ${AV.fmtDate(j.derniere_activite)}`;
         AV.calendrier(j);
         const sc = AV.succes(j), tm = AV.titresMois(j.pseudo);
+        $('pf-carte').onclick = () => AV.carteChevalier && AV.carteChevalier(j);
         $('pf-succes-panel').hidden = !sc.length;
         const barre = (x) => x.prochain === null ? '<span class="sc-max">Niveau max</span>'
             : x.inverse ? `<span class="sc-next">Prochain : top ${AV.fmtN(x.prochain)}</span>`

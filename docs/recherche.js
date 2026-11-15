@@ -4,7 +4,7 @@
     if (!AV.DATA) return;
     const norm = (t) => t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     const PAGES = [['Classement', 'classement', 'fa-trophy'], ['Rapport de Bataille', 'stats', 'fa-chart-line'], ['XP', 'xp', 'fa-bolt'], ['Quêtes', 'quetes', 'fa-scroll'],
-        ['Armurerie', 'armurerie', 'fa-shield-halved'], ['La Guilde', 'guilde', 'fa-users'], ['Panthéon', 'pantheon', 'fa-crown'], ['Comparer deux chevaliers', 'duel', 'fa-right-left']];
+        ['Armurerie', 'armurerie', 'fa-shield-halved'], ['La Guilde', 'guilde', 'fa-users'], ['Panthéon', 'pantheon', 'fa-crown'], ['Guide', 'guide', 'fa-book-open'], ['Comparer deux chevaliers', 'duel', 'fa-right-left']];
 
     const fab = document.createElement('button');
     fab.id = 'gs-fab'; fab.type = 'button'; fab.setAttribute('aria-label', 'Rechercher'); fab.innerHTML = '<i class="fa-solid fa-magnifying-glass"></i>';
