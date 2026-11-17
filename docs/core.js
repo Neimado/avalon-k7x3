@@ -4,8 +4,8 @@ window.AV = (function () {
     const MOIS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet',
                   'août', 'septembre', 'octobre', 'novembre', 'décembre'];
     AV.MOIS = MOIS;
-    AV.C = { GREEN: '#10b981', RED: '#ef4444', GOLD: (window.AVTHEME || {}).gold || '#e5c07b', SLATE: '#94a3b8', GRID: 'rgba(255,255,255,0.05)',
-             A: '#a78bfa', B: (window.AVTHEME || {}).gold || '#e5c07b' };
+    AV.C = { GREEN: (window.AVTHEME || {}).up || '#10b981', RED: '#ef4444', GOLD: (window.AVTHEME || {}).gold || '#e5c07b', SLATE: '#94a3b8', GRID: 'rgba(255,255,255,0.05)',
+             A: (window.AVTHEME || {}).a || '#a78bfa', B: (window.AVTHEME || {}).gold || '#e5c07b' };
 
     // ---------- Utilitaires ----------
     AV.$ = (id) => document.getElementById(id);

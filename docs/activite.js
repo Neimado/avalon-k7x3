@@ -3,7 +3,7 @@
     const AV = window.AV, $ = AV.$, esc = AV.esc;
     if (!AV.DATA) return;
     const TYPES = {
-        xp: { titre: 'Expérience', unite: 'XP', icone: 'fa-bolt', col: '#a78bfa', colPrec: 'rgba(167,139,250,0.32)' },
+        xp: { titre: 'Expérience', unite: 'XP', icone: 'fa-bolt', col: AV.C.A, colPrec: `rgba(${(window.AVTHEME || {}).rgbA || '167,139,250'},0.32)` },
         quetes: { titre: 'Quêtes', unite: 'quêtes', icone: 'fa-scroll', col: AV.C.GOLD, colPrec: `rgba(${(window.AVTHEME || {}).rgb || '229,192,123'},0.32)` }
     };
     const moisDeSemaine = (lundi) => AV.moisCle(AV.addJ(lundi, 3));        // règle du jeudi : la semaine appartient au mois de son jeudi

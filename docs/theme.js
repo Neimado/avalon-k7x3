@@ -15,43 +15,44 @@
     // bg = fond, top = lueur du haut, panel = cartes, nav = barre, gold = couleur principale (rgb = même couleur en r,g,b),
     // accent = texte secondaire, accent2 = deuxième couleur, orn = liseré sous la barre du haut, fx = animation
     const T = {
-        halloween: { nom: 'Halloween', ico: 'fa-ghost', fx: 'halloween', bg: '#0b0710', top: '#2a1338', panel: 'rgba(26,14,32,0.62)', nav: 'rgba(14,8,20,0.82)', solid: 'rgba(24,14,30,0.95)',
-            card: ['#2a1634', '#120a18'], gold: '#ff8a2a', rgb: '255,138,42', border: 'rgba(255,138,42,0.16)', accent: '#bfa3dc', accent2: '#9b6bff',
-            orn: 'linear-gradient(90deg, transparent, #ff8a2a 20%, #9b6bff 50%, #ff8a2a 80%, transparent)',
+        halloween: { nom: 'Halloween', ico: 'fa-ghost', fx: 'halloween', decor: 'halloween', bg: '#0d0603', top: '#4d2008', glow: 'rgba(255,110,10,0.34)', panel: 'rgba(32,15,6,0.72)', nav: 'rgba(18,8,3,0.86)', solid: 'rgba(30,14,6,0.8)',
+            card: ['#4a2209', '#170a04'], gold: '#ff7a1a', rgb: '255,122,26', border: 'rgba(255,122,26,0.22)', accent: '#ffb877', accent2: '#a259ff', up: '#9be15d', h1: '#ffe2c4',
+            orn: 'linear-gradient(90deg, transparent, #ff7a1a 20%, #a259ff 50%, #ff7a1a 80%, transparent)',
             msg: () => 'Les ombres rôdent sur Avalon… Bon Halloween, chevaliers !' },
-        noel: { nom: 'Noël', ico: 'fa-tree', fx: 'neige', bg: '#060d17', top: '#143049', panel: 'rgba(14,26,40,0.6)', nav: 'rgba(7,15,26,0.82)', solid: 'rgba(14,26,40,0.95)',
-            card: ['#1a3550', '#0a1522'], gold: '#f3c969', rgb: '243,201,105', border: 'rgba(243,201,105,0.14)', accent: '#a9c8e0', accent2: '#e2504a',
+        noel: { nom: 'Noël', ico: 'fa-tree', fx: 'neige', decor: 'noel', bg: '#06130d', top: '#1f5a3c', glow: 'rgba(222,40,60,0.3)', panel: 'rgba(10,32,22,0.72)', nav: 'rgba(5,20,13,0.86)', solid: 'rgba(10,32,22,0.8)',
+            card: ['#1f5a3c', '#08170f'], gold: '#f6d365', rgb: '246,211,101', border: 'rgba(246,211,101,0.2)', accent: '#bfe9cf', accent2: '#ef4757', up: '#6ee7a0', h1: '#fff5dc',
             orn: 'guirlande', msg: () => 'Joyeux Noël, chevaliers d\'Avalon !' },
-        nouvelan: { nom: 'Nouvel An', ico: 'fa-champagne-glasses', fx: 'fete', bg: '#07070a', top: '#221c0c', panel: 'rgba(20,18,12,0.62)', nav: 'rgba(10,9,6,0.82)', solid: 'rgba(20,18,12,0.95)',
-            card: ['#2d2510', '#100e08'], gold: '#ffd166', rgb: '255,209,102', border: 'rgba(255,209,102,0.16)', accent: '#dccfa6', accent2: '#ffffff',
-            orn: 'linear-gradient(90deg, transparent, #ffd166 25%, #fff3c4 50%, #ffd166 75%, transparent)',
+        nouvelan: { nom: 'Nouvel An', ico: 'fa-champagne-glasses', fx: 'fete', decor: 'nouvelan', bg: '#04050f', top: '#1d1c52', glow: 'rgba(255,196,70,0.26)', panel: 'rgba(14,14,40,0.72)', nav: 'rgba(6,6,22,0.86)', solid: 'rgba(14,14,40,0.8)',
+            card: ['#26256a', '#0a0a1f'], gold: '#ffd166', rgb: '255,209,102', border: 'rgba(255,209,102,0.2)', accent: '#c9c7ff', accent2: '#ff6bcb', up: '#5eead4', h1: '#fff3c9',
+            orn: 'linear-gradient(90deg, transparent, #ffd166 20%, #ff6bcb 50%, #ffd166 80%, transparent)',
             msg: (y) => `Bonne année ${y}, Avalon ! Que cette année vous rende encore plus forts.` },
-        valentin: { nom: 'Saint-Valentin', ico: 'fa-heart', fx: 'coeurs', bg: '#12070d', top: '#3d1228', panel: 'rgba(32,12,22,0.6)', nav: 'rgba(20,8,14,0.82)', solid: 'rgba(32,12,22,0.95)',
-            card: ['#431730', '#190911'], gold: '#ff7aa8', rgb: '255,122,168', border: 'rgba(255,122,168,0.16)', accent: '#f2b8cc', accent2: '#ff4d6d',
-            orn: 'linear-gradient(90deg, transparent, #ff4d6d 25%, #ffb3c8 50%, #ff4d6d 75%, transparent)',
+        valentin: { nom: 'Saint-Valentin', ico: 'fa-heart', fx: 'coeurs', decor: 'valentin', bg: '#15060d', top: '#601838', glow: 'rgba(255,64,120,0.34)', panel: 'rgba(40,12,26,0.72)', nav: 'rgba(24,6,15,0.86)', solid: 'rgba(40,12,26,0.8)',
+            card: ['#601838', '#1a0811'], gold: '#ff6b9a', rgb: '255,107,154', border: 'rgba(255,107,154,0.22)', accent: '#ffc2d6', accent2: '#ffb347', up: '#ffa6c1', h1: '#ffe3ec',
+            orn: 'linear-gradient(90deg, transparent, #ff3d6e 25%, #ffc2d6 50%, #ff3d6e 75%, transparent)',
             msg: () => 'Joyeuse Saint-Valentin, chevaliers !' },
-        paques: { nom: 'Pâques', ico: 'fa-egg', fx: 'paques', bg: '#09110c', top: '#1e3a2a', panel: 'rgba(14,28,20,0.6)', nav: 'rgba(8,16,11,0.82)', solid: 'rgba(14,28,20,0.95)',
-            card: ['#24432f', '#0d1a12'], gold: '#f7e27a', rgb: '247,226,122', border: 'rgba(247,226,122,0.15)', accent: '#bde5c9', accent2: '#f9a8d4',
-            orn: 'linear-gradient(90deg, #f9a8d4, #fde68a, #a7f3d0, #c4b5fd, #f9a8d4, #fde68a, #a7f3d0)',
+        paques: { nom: 'Pâques', ico: 'fa-egg', fx: 'paques', decor: 'paques', bg: '#0a1610', top: '#2f6a43', glow: 'rgba(255,214,90,0.26)', panel: 'rgba(14,36,24,0.72)', nav: 'rgba(8,22,14,0.86)', solid: 'rgba(14,36,24,0.8)',
+            card: ['#2f6a43', '#0c1c13'], gold: '#ffd966', rgb: '255,217,102', border: 'rgba(255,217,102,0.2)', accent: '#c9f2d6', accent2: '#f78fc3', up: '#7ee787', h1: '#fffbe0',
+            orn: 'linear-gradient(90deg, #f78fc3, #ffd966, #8be9b1, #a99bff, #f78fc3, #ffd966, #8be9b1)',
             msg: () => 'Joyeuses Pâques, chevaliers !' },
-        anniversaire: { nom: 'Anniversaire d\'Avalon', ico: 'fa-cake-candles', fx: 'fete', bg: '#0a0805', top: '#33260a', panel: 'rgba(26,20,8,0.62)', nav: 'rgba(14,10,4,0.82)', solid: 'rgba(26,20,8,0.95)',
-            card: ['#3a2c0c', '#120d04'], gold: '#ffd34d', rgb: '255,211,77', border: 'rgba(255,211,77,0.18)', accent: '#f1deaa', accent2: '#fff1b8',
-            orn: 'linear-gradient(90deg, transparent, #ffd34d 20%, #fff1b8 50%, #ffd34d 80%, transparent)',
+        anniversaire: { nom: 'Anniversaire d\'Avalon', ico: 'fa-cake-candles', fx: 'fete', decor: 'anniversaire', bg: '#0d0803', top: '#5a3d0a', glow: 'rgba(255,184,40,0.34)', panel: 'rgba(36,24,6,0.72)', nav: 'rgba(20,12,3,0.86)', solid: 'rgba(36,24,6,0.8)',
+            card: ['#5a3d0a', '#150e04'], gold: '#ffcc33', rgb: '255,204,51', border: 'rgba(255,204,51,0.24)', accent: '#ffe7a6', accent2: '#ff7a59', up: '#7ee787', h1: '#fff2c4',
+            orn: 'linear-gradient(90deg, transparent, #ffcc33 20%, #ff7a59 50%, #ffcc33 80%, transparent)',
             msg: (y) => { const n = Math.max(1, y - 2026); return `Avalon fête ses ${n} an${n > 1 ? 's' : ''} ! Merci à tous les chevaliers.`; } },
-        resolutions: { nom: 'Nouveaux objectifs', ico: 'fa-bullseye', fx: 'elan', bg: '#06100f', top: '#0f3633', panel: 'rgba(10,28,26,0.6)', nav: 'rgba(5,16,15,0.82)', solid: 'rgba(10,28,26,0.95)',
-            card: ['#14403c', '#08171a'], gold: '#4fe3c1', rgb: '79,227,193', border: 'rgba(79,227,193,0.15)', accent: '#a6e9dc', accent2: '#ffd166',
-            orn: 'linear-gradient(90deg, transparent, #4fe3c1 25%, #ffd166 50%, #4fe3c1 75%, transparent)',
+        resolutions: { nom: 'Nouveaux objectifs', ico: 'fa-bullseye', fx: 'elan', decor: 'resolutions', bg: '#04110f', top: '#0f4f48', glow: 'rgba(255,160,50,0.34)', panel: 'rgba(8,34,30,0.72)', nav: 'rgba(4,20,18,0.86)', solid: 'rgba(8,34,30,0.8)',
+            card: ['#0f4f48', '#06191a'], gold: '#35e0c0', rgb: '53,224,192', border: 'rgba(53,224,192,0.2)', accent: '#a9f0e0', accent2: '#ffb347', up: '#ffd166', h1: '#e0fff8',
+            orn: 'linear-gradient(90deg, transparent, #35e0c0 25%, #ffb347 50%, #35e0c0 75%, transparent)',
             msg: () => 'Nouvelle année, nouveaux objectifs : on repart à l\'assaut, chevaliers !' },
-        exceptionnel: { nom: 'Événement Avalon', ico: 'fa-star', fx: 'fete', bg: '#0a0710', top: '#2a1a4a', panel: 'rgba(22,16,36,0.62)', nav: 'rgba(12,8,22,0.82)', solid: 'rgba(22,16,36,0.95)',
-            card: ['#2f1f55', '#110b1f'], gold: '#c9a8ff', rgb: '201,168,255', border: 'rgba(201,168,255,0.16)', accent: '#d7c6f5', accent2: '#ffd166',
+        exceptionnel: { nom: 'Événement Avalon', ico: 'fa-star', fx: 'fete', decor: 'exceptionnel', bg: '#0a0710', top: '#3a2270', glow: 'rgba(255,200,90,0.26)', panel: 'rgba(24,16,44,0.72)', nav: 'rgba(12,8,26,0.86)', solid: 'rgba(24,16,44,0.8)',
+            card: ['#3a2270', '#110b1f'], gold: '#c9a8ff', rgb: '201,168,255', border: 'rgba(201,168,255,0.2)', accent: '#e0d2fa', accent2: '#ffd166', up: '#7ee787', h1: '#f3eaff',
             orn: 'linear-gradient(90deg, transparent, #c9a8ff 25%, #ffd166 50%, #c9a8ff 75%, transparent)',
             msg: () => 'Un événement spécial a lieu sur Avalon !' },
-        // saisons : teinte discrète, sans animation ni message
-        hiver: { nom: 'Hiver', saison: true, bg: '#08090d', top: '#18222f', gold: '#a8d0ee', rgb: '168,208,238', panel: 'rgba(16,20,28,0.6)', nav: 'rgba(8,11,16,0.8)', solid: 'rgba(18,22,30,0.95)', card: ['#212c3a', '#0e1219'], border: 'rgba(168,208,238,0.1)', accent: '#a9bccf', accent2: '#a78bfa' },
-        printemps: { nom: 'Printemps', saison: true, bg: '#08100a', top: '#193020', gold: '#9fdc8a', rgb: '159,220,138', panel: 'rgba(14,24,17,0.6)', nav: 'rgba(8,14,10,0.8)', solid: 'rgba(16,26,19,0.95)', card: ['#223a29', '#0d170f'], border: 'rgba(159,220,138,0.1)', accent: '#aecbb4', accent2: '#f9a8d4' },
-        ete: { nom: 'Été', saison: true, bg: '#0c0a06', top: '#33260f', gold: '#ffb85c', rgb: '255,184,92', panel: 'rgba(26,20,10,0.6)', nav: 'rgba(14,10,5,0.8)', solid: 'rgba(28,22,12,0.95)', card: ['#3b2d14', '#150f07'], border: 'rgba(255,184,92,0.1)', accent: '#d6c3a3', accent2: '#38bdf8' },
-        automne: { nom: 'Automne', saison: true, bg: '#0c0805', top: '#32190f', gold: '#e0894a', rgb: '224,137,74', panel: 'rgba(28,17,11,0.6)', nav: 'rgba(15,9,5,0.8)', solid: 'rgba(30,19,13,0.95)', card: ['#3b2216', '#150c07'], border: 'rgba(224,137,74,0.1)', accent: '#cdb19b', accent2: '#c2410c' }
+        // saisons : teinte discrète, sans décor, sans animation ni message
+        hiver: { nom: 'Hiver', saison: true, bg: '#08090d', top: '#18222f', gold: '#a8d0ee', rgb: '168,208,238', panel: 'rgba(16,20,28,0.6)', nav: 'rgba(8,11,16,0.8)', solid: 'rgba(18,22,30,0.95)', card: ['#212c3a', '#0e1219'], border: 'rgba(168,208,238,0.1)', accent: '#a9bccf', accent2: '#a78bfa', up: '#10b981', h1: '#ffffff' },
+        printemps: { nom: 'Printemps', saison: true, bg: '#08100a', top: '#193020', gold: '#9fdc8a', rgb: '159,220,138', panel: 'rgba(14,24,17,0.6)', nav: 'rgba(8,14,10,0.8)', solid: 'rgba(16,26,19,0.95)', card: ['#223a29', '#0d170f'], border: 'rgba(159,220,138,0.1)', accent: '#aecbb4', accent2: '#f9a8d4', up: '#10b981', h1: '#ffffff' },
+        ete: { nom: 'Été', saison: true, bg: '#0c0a06', top: '#33260f', gold: '#ffb85c', rgb: '255,184,92', panel: 'rgba(26,20,10,0.6)', nav: 'rgba(14,10,5,0.8)', solid: 'rgba(28,22,12,0.95)', card: ['#3b2d14', '#150f07'], border: 'rgba(255,184,92,0.1)', accent: '#d6c3a3', accent2: '#38bdf8', up: '#10b981', h1: '#ffffff' },
+        automne: { nom: 'Automne', saison: true, bg: '#0c0805', top: '#32190f', gold: '#e0894a', rgb: '224,137,74', panel: 'rgba(28,17,11,0.6)', nav: 'rgba(15,9,5,0.8)', solid: 'rgba(30,19,13,0.95)', card: ['#3b2216', '#150c07'], border: 'rgba(224,137,74,0.1)', accent: '#cdb19b', accent2: '#c2410c', up: '#10b981', h1: '#ffffff' }
     };
+    const hexRgb = (h) => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16)).join(',');
 
     // ---------- Calendrier ----------
     function paques(an) {   // algorithme de Meeus / Jones / Butcher
@@ -105,7 +106,8 @@
     const fxCoupe = lire('av_fx_off') === '1';
 
     window.AVTHEME = { id: actif ? choix.id : 'classique', nom: th.nom, evenement: evenement && actif,
-        edition: evenement && actif ? `${th.nom} ${choix.an}` : '', gold: actif ? th.gold : '#e5c07b', rgb: actif ? th.rgb : '229,192,123' };
+        edition: evenement && actif ? `${th.nom} ${choix.an}` : '', gold: actif ? th.gold : '#e5c07b', rgb: actif ? th.rgb : '229,192,123',
+        a: actif ? th.accent2 : '#a78bfa', rgbA: actif ? hexRgb(th.accent2) : '167,139,250', up: actif ? th.up : '#10b981', rgbUp: actif ? hexRgb(th.up) : '16,185,129', annee: choix.an };
 
     function appliquer() {
         const set = (k, v) => root.style.setProperty(k, v);
@@ -114,6 +116,7 @@
         set('--bg-dark', th.bg); set('--bg-top', th.top); set('--panel-bg', th.panel); set('--nav-bg', th.nav);
         set('--nav-solid-a', th.nav.replace(/[\d.]+\)$/, '0.96)')); set('--nav-solid-b', th.nav.replace(/[\d.]+\)$/, '0.98)'));
         set('--panel-solid', th.solid); set('--card-a', th.card[0]); set('--card-b', th.card[1]);
+        set('--bg-glow', th.glow || 'transparent'); set('--up-color', th.up); set('--up-rgb', hexRgb(th.up)); set('--accent2-rgb', hexRgb(th.accent2)); set('--h1', th.h1);
         set('--gold', th.gold); set('--gold-rgb', th.rgb); set('--border-color', th.border); set('--accent', th.accent); set('--accent2', th.accent2);
         if (th.orn && th.orn !== 'guirlande') set('--ornement', th.orn);
         const mt = document.querySelector('meta[name="theme-color"]'); if (mt) mt.setAttribute('content', th.bg);
@@ -242,6 +245,7 @@
             const nom = document.querySelector('.nav-brand span');
             if (nom && th.ico) { const i = document.createElement('i'); i.className = `fa-solid ${th.ico} theme-ico`; nom.insertAdjacentElement('afterend', i); }
         }
+        if (actif && th.decor && window.AVDecor) { try { AVDecor.monter(th.decor, choix.an, !fxCoupe); } catch (e) { /* le décor ne doit jamais casser le site */ } }
         if (actif && !reduit && !fxCoupe && th.fx) { try { demarrerFx(); } catch (e) { /* la déco ne doit jamais casser le site */ } }
         // lien discret pour le visiteur : seulement pendant un vrai événement
         if (evenement) {

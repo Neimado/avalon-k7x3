@@ -71,7 +71,7 @@
             barres('m2', 'mo-c-gains', g.map(x => AV.fmtCourt(x.date)), g.map(x => Math.max(0, x.gain)), C.GREEN, 'places', 'Relevé du');
             $('mo-table').innerHTML = AV.tableReleves([...m.rel].reverse());
         }
-        if (m.xp.length) barres('m3', 'mo-c-xp', m.xp.map(x => AV.fmtCourt(x.lundi)), m.xp.map(x => x.valeur), '#a78bfa', 'XP', 'Semaine du');
+        if (m.xp.length) barres('m3', 'mo-c-xp', m.xp.map(x => AV.fmtCourt(x.lundi)), m.xp.map(x => x.valeur), AV.C.A, 'XP', 'Semaine du');
         if (m.quetes.length) barres('m4', 'mo-c-q', m.quetes.map(x => AV.fmtCourt(x.lundi)), m.quetes.map(x => x.valeur), C.GOLD, 'quêtes', 'Semaine du');
         return { page: 'page-mois', nav: 'page-armurerie' };
     };

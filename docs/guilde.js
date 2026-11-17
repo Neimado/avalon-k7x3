@@ -44,7 +44,7 @@
         const barres = (cle, id, T, col, couleurTxt) => AV.chart(cle, id, { type: 'bar', data: { labels: T.map(x => AV.fmtCourt(x[0])), datasets: [{ data: T.map(x => x[1]), backgroundColor: col, borderRadius: 4, maxBarThickness: 30 }] },
             options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { title: (it) => `Semaine du ${it[0].label}`, label: (c) => `${AV.fmtN(c.parsed.y)} ${couleurTxt}` } } },
                 scales: { y: { beginAtZero: true, ticks: { color: C.SLATE, precision: 0, maxTicksLimit: 6 }, grid: { color: C.GRID } }, x: { ticks: { color: C.SLATE, maxRotation: 0, autoSkip: true, maxTicksLimit: 8 }, grid: { display: false } } } } });
-        barres('gx', 'gu-c-xp', wx.map(l => [l, X[l]]), '#a78bfa', 'XP');
+        barres('gx', 'gu-c-xp', wx.map(l => [l, X[l]]), AV.C.A, 'XP');
         barres('gq', 'gu-c-q', wq.map(l => [l, Q[l]]), C.GOLD, 'quêtes');
         $('gu-c-xp').closest('.panel').hidden = !wx.length; $('gu-c-q').closest('.panel').hidden = !wq.length;
     }

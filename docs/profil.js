@@ -95,7 +95,7 @@
             AV.chart('p3', 'pf-c3', { type: 'line', data: { datasets: [{ data: vue.map(l => ({ x: AV.toTs(l.date), y: l.record })), borderColor: C.GOLD, backgroundColor: `rgba(${(window.AVTHEME || {}).rgb || '229,192,123'},0.12)`, borderWidth: 2, stepped: true, pointRadius: 0, pointHoverRadius: 5, fill: true }] },
                 options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { title: AV.titreDate, label: (c) => `Record #${c.parsed.y}` } } }, scales: { y: AV.axeRang(vue.map(l => l.record)), x: AV.axeDates(xs3) } } });
         } else {
-            const T = onglet === 'xp' ? { u: 'XP', col: '#a78bfa' } : { u: 'quêtes', col: C.GOLD };
+            const T = onglet === 'xp' ? { u: 'XP', col: C.A } : { u: 'quêtes', col: C.GOLD };
             const a = s[onglet], hb = fenetre(a.hebdo, (x) => x.lundi);
             $('pf-t1').textContent = `${T.u === 'XP' ? 'XP' : 'Quêtes'} par semaine`;
             const moy = hb.map((_, i) => { const w = hb.slice(Math.max(0, i - 3), i + 1); return Math.round(w.reduce((q, x) => q + x.valeur, 0) / w.length); });

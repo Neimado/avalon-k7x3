@@ -1,6 +1,6 @@
 /* Avalon - service worker : toujours la version en ligne d'abord (les mises à jour du dimanche apparaissent tout de suite),
    la copie gardée en mémoire ne sert que sans connexion. */
-const CACHE = 'avalon-v4';
+const CACHE = 'avalon-v5';
 self.addEventListener('install', () => self.skipWaiting());
 self.addEventListener('activate', (e) => e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())));
 self.addEventListener('fetch', (e) => {
