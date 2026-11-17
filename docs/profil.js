@@ -92,7 +92,7 @@
                     scales: { y: { beginAtZero: true, suggestedMax: 3, ticks: { color: C.SLATE, precision: 0, maxTicksLimit: 6 }, grid: { color: C.GRID } }, x: { ticks: { color: C.SLATE, maxRotation: 0, autoSkip: true, maxTicksLimit: 7 }, grid: { display: false } } } } });
             $('pf-t3').textContent = 'Courbe des records';
             const xs3 = vue.map(l => AV.toTs(l.date));
-            AV.chart('p3', 'pf-c3', { type: 'line', data: { datasets: [{ data: vue.map(l => ({ x: AV.toTs(l.date), y: l.record })), borderColor: C.GOLD, backgroundColor: 'rgba(229,192,123,0.12)', borderWidth: 2, stepped: true, pointRadius: 0, pointHoverRadius: 5, fill: true }] },
+            AV.chart('p3', 'pf-c3', { type: 'line', data: { datasets: [{ data: vue.map(l => ({ x: AV.toTs(l.date), y: l.record })), borderColor: C.GOLD, backgroundColor: `rgba(${(window.AVTHEME || {}).rgb || '229,192,123'},0.12)`, borderWidth: 2, stepped: true, pointRadius: 0, pointHoverRadius: 5, fill: true }] },
                 options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { title: AV.titreDate, label: (c) => `Record #${c.parsed.y}` } } }, scales: { y: AV.axeRang(vue.map(l => l.record)), x: AV.axeDates(xs3) } } });
         } else {
             const T = onglet === 'xp' ? { u: 'XP', col: '#a78bfa' } : { u: 'quêtes', col: C.GOLD };

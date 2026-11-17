@@ -42,6 +42,7 @@
         });
         x.textAlign = 'center'; x.fillStyle = '#64748b'; x.font = '400 14px Inter, sans-serif';
         x.fillText('Leveling Fitness · Avalon Dashboard', W / 2, H - 44);
+        const ed = (window.AVTHEME || {}).edition; if (ed) { x.fillStyle = R.c1; x.font = '600 15px Inter, sans-serif'; x.fillText('Édition ' + ed, W / 2, H - 70); }
         return c;
     }
     AV.carteChevalier = (j) => {

@@ -4,7 +4,7 @@
     if (!AV.DATA) return;
     const TYPES = {
         xp: { titre: 'Expérience', unite: 'XP', icone: 'fa-bolt', col: '#a78bfa', colPrec: 'rgba(167,139,250,0.32)' },
-        quetes: { titre: 'Quêtes', unite: 'quêtes', icone: 'fa-scroll', col: '#e5c07b', colPrec: 'rgba(229,192,123,0.32)' }
+        quetes: { titre: 'Quêtes', unite: 'quêtes', icone: 'fa-scroll', col: AV.C.GOLD, colPrec: `rgba(${(window.AVTHEME || {}).rgb || '229,192,123'},0.32)` }
     };
     const moisDeSemaine = (lundi) => AV.moisCle(AV.addJ(lundi, 3));        // règle du jeudi : la semaine appartient au mois de son jeudi
     const lundisEntre = (a, b) => { const o = []; for (let l = a; l <= b; l = AV.addJ(l, 7)) o.push(l); return o; };
