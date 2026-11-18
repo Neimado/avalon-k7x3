@@ -219,7 +219,7 @@
         courant = por;
     }
     // thèmes qui ont de vraies illustrations (themes/<nom>-wide.webp et -tall.webp) ; sinon on garde les dessins en code
-    const IMAGES = { halloween: 1, noel: 1, nouvelan: 1, valentin: 1, paques: 2 };   // 2 = voile renforcé (image claire au centre)
+    const IMAGES = { halloween: 1, noel: 1, nouvelan: 1, valentin: 1, paques: 2, anniversaire: 2 };   // 2 = voile renforcé (image claire au centre)
     const CSS_IMG = `#decor .bg{position:absolute;inset:0;background-size:cover;background-position:center bottom;background-repeat:no-repeat}#decor .bg.tall{display:none}
 @media (max-aspect-ratio:19/20){#decor .bg.wide{display:none}#decor .bg.tall{display:block}}
 #decor .voile{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.5) 0,rgba(0,0,0,0) 26%),radial-gradient(ellipse 62% 58% at 50% 46%,rgba(0,0,0,.4),rgba(0,0,0,0) 100%)}
