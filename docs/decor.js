@@ -218,14 +218,28 @@
         box.innerHTML = `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">${fn(W, H, u, por, an)}</svg>`;
         courant = por;
     }
+    // thèmes qui ont de vraies illustrations (themes/<nom>-wide.webp et -tall.webp) ; sinon on garde les dessins en code
+    const IMAGES = { halloween: 1, noel: 1, nouvelan: 1, valentin: 1, paques: 2 };   // 2 = voile renforcé (image claire au centre)
+    const CSS_IMG = `#decor .bg{position:absolute;inset:0;background-size:cover;background-position:center bottom;background-repeat:no-repeat}#decor .bg.tall{display:none}
+@media (max-aspect-ratio:19/20){#decor .bg.wide{display:none}#decor .bg.tall{display:block}}
+#decor .voile{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.5) 0,rgba(0,0,0,0) 26%),radial-gradient(ellipse 62% 58% at 50% 46%,rgba(0,0,0,.4),rgba(0,0,0,0) 100%)}
+#decor .voile.fort{background:linear-gradient(180deg,rgba(0,0,0,.62) 0,rgba(0,0,0,.34) 42%,rgba(0,0,0,.22) 100%),radial-gradient(ellipse 72% 66% at 50% 48%,rgba(0,0,0,.6),rgba(0,0,0,0) 100%)}`;
     window.AVDecor = {
+        aImage: (nom) => !!IMAGES[nom],
         monter(nom, an, anime) {
-            if (!SCENES[nom]) return false;
-            const st = document.createElement('style'); st.textContent = CSS; document.head.appendChild(st);
+            if (!SCENES[nom] && !IMAGES[nom]) return false;
+            const st = document.createElement('style'); st.textContent = CSS + CSS_IMG; document.head.appendChild(st);
             const box = document.createElement('div'); box.id = 'decor'; box.setAttribute('aria-hidden', 'true'); document.body.insertBefore(box, document.body.firstChild);
             if (anime === false) box.classList.add('fige');
-            try { dessiner(nom, an); } catch (e) { box.remove(); return false; }
-            let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { const por = innerWidth / innerHeight < 0.95; if (por !== courant) { try { dessiner(nom, an); } catch (e) { /* ignore */ } } }, 200); });
+            const svg = () => { try { dessiner(nom, an); } catch (e) { box.remove(); return; } let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { const por = innerWidth / innerHeight < 0.95; if (por !== courant) { try { dessiner(nom, an); } catch (e) { /* ignore */ } } }, 200); }); };
+            if (!IMAGES[nom]) { svg(); return true; }
+            const por = innerWidth / innerHeight < 0.95, src = `themes/${nom}-${por ? 'tall' : 'wide'}.webp`, sonde = new Image();
+            sonde.onload = () => {
+                box.innerHTML = `<div class="bg wide" style="background-image:url('themes/${nom}-wide.webp')"></div><div class="bg tall" style="background-image:url('themes/${nom}-tall.webp')"></div><div class="voile${IMAGES[nom] > 1 ? ' fort' : ''}"></div>`;
+                box.classList.add('img');
+            };
+            sonde.onerror = svg;
+            sonde.src = src;
             return true;
         }
     };

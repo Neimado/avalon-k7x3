@@ -906,3 +906,5 @@ html[data-theme]:not([data-theme="classique"]) .hero .subtitle, html[data-theme]
 /* thèmes animés : pas de flou en arrière-plan (il se recalcule à chaque image et fait ramer) */
 html[data-theme]:not([data-theme="classique"]):not([data-theme="hiver"]):not([data-theme="printemps"]):not([data-theme="ete"]):not([data-theme="automne"]) * { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
 html[data-theme]:not([data-theme="classique"]):not([data-theme="hiver"]):not([data-theme="printemps"]):not([data-theme="ete"]):not([data-theme="automne"]) { --panel-bg: var(--panel-solid); }
+html[data-theme]:not([data-theme="classique"]) #cl-periode, html[data-theme]:not([data-theme="classique"]) .table-head, html[data-theme]:not([data-theme="classique"]) th { text-shadow: 0 1px 8px rgba(0,0,0,0.9), 0 0 3px rgba(0,0,0,0.7); }
+html[data-theme]:not([data-theme="classique"]) #cl-periode { color: #cbd5e1; }

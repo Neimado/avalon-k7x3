@@ -149,7 +149,7 @@
             { n: 70, spr: [s], taille: [3, 8], vy: [18, 46], sway: [8, 22], alpha: [0.35, 0.85] },
             { n: 10, spr: [s], taille: [14, 24], vy: [10, 22], sway: [6, 12], alpha: [0.1, 0.2] }]; }
         if (type === 'halloween') { const f = brume('150,90,220'), b2 = brume('255,138,42'), e = lueur('255,150,50', 16); return [
-            { n: 5, spr: [f, f, b2], taille: [380, 640], vx: [6, 14], sway: [0, 0], alpha: [0.1, 0.2], fixeY: true },
+            { n: 2, spr: [f, b2], taille: [380, 640], vx: [6, 14], sway: [0, 0], alpha: [0.05, 0.1], fixeY: true },
             { n: 30, spr: [e], taille: [6, 16], vy: [-42, -14], sway: [6, 16], alpha: [0.35, 0.9], scint: [1.5, 3.5] },
             { n: 2, spr: [chauveSouris()], chauve: true, taille: [46, 70], alpha: [0.9, 0.9] }]; }
         if (type === 'fete') { const cols = ['#ffd166', '#fff3c4', '#ff6b6b', '#7dd3fc', '#ffffff']; return [
