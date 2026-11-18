@@ -38,9 +38,9 @@
             card: ['#16296b', '#070d26'], gold: '#ffcc33', rgb: '255,204,51', border: 'rgba(255,204,51,0.24)', accent: '#ffe7a6', accent2: '#e0405a', up: '#7ee787', h1: '#fff2c4',
             orn: 'linear-gradient(90deg, transparent, #ffcc33 20%, #e0405a 50%, #ffcc33 80%, transparent)',
             msg: (y) => { const n = Math.max(1, y - 2026); return `Avalon fête ses ${n} an${n > 1 ? 's' : ''} ! Merci à tous les chevaliers.`; } },
-        resolutions: { nom: 'Nouveaux objectifs', ico: 'fa-bullseye', fx: 'elan', decor: 'resolutions', bg: '#04110f', top: '#0f4f48', glow: 'rgba(255,160,50,0.34)', panel: 'rgba(8,34,30,0.72)', nav: 'rgba(4,20,18,0.86)', solid: 'rgba(8,34,30,0.8)',
-            card: ['#0f4f48', '#06191a'], gold: '#35e0c0', rgb: '53,224,192', border: 'rgba(53,224,192,0.2)', accent: '#a9f0e0', accent2: '#ffb347', up: '#ffd166', h1: '#e0fff8',
-            orn: 'linear-gradient(90deg, transparent, #35e0c0 25%, #ffb347 50%, #35e0c0 75%, transparent)',
+        resolutions: { nom: 'Nouveaux objectifs', ico: 'fa-bullseye', fx: 'elan', decor: 'resolutions', bg: '#060c1a', top: '#1c3a78', glow: 'rgba(255,196,80,0.3)', panel: 'rgba(10,20,44,0.72)', nav: 'rgba(5,11,28,0.86)', solid: 'rgba(10,20,44,0.8)',
+            card: ['#1c3a78', '#08101f'], gold: '#f5c451', rgb: '245,196,81', border: 'rgba(245,196,81,0.22)', accent: '#cfe0ff', accent2: '#4cd2a6', up: '#7ee787', h1: '#fff4d6',
+            orn: 'linear-gradient(90deg, transparent, #f5c451 25%, #4cd2a6 50%, #f5c451 75%, transparent)',
             msg: () => 'Nouvelle année, nouveaux objectifs : on repart à l\'assaut, chevaliers !' },
         exceptionnel: { nom: 'Événement Avalon', ico: 'fa-star', fx: 'fete', decor: 'exceptionnel', bg: '#0a0710', top: '#3a2270', glow: 'rgba(255,200,90,0.26)', panel: 'rgba(24,16,44,0.72)', nav: 'rgba(12,8,26,0.86)', solid: 'rgba(24,16,44,0.8)',
             card: ['#3a2270', '#110b1f'], gold: '#c9a8ff', rgb: '201,168,255', border: 'rgba(201,168,255,0.2)', accent: '#e0d2fa', accent2: '#ffd166', up: '#7ee787', h1: '#f3eaff',
@@ -161,7 +161,7 @@
             const pe = ['#f9a8d4', '#fde68a', '#ffffff', '#c4b5fd'].map(petale); return [
             { n: 12, spr: oe, taille: [18, 30], vy: [12, 28], sway: [10, 22], alpha: [0.55, 0.85], tourne: [-0.5, 0.5] },
             { n: 34, spr: pe, taille: [10, 18], vy: [18, 42], sway: [16, 34], alpha: [0.5, 0.9], tourne: [-2, 2] }]; }
-        if (type === 'elan') { const l = lueur('79,227,193', 16), j = lueur('255,209,102', 16); return [
+        if (type === 'elan') { const l = lueur('255,214,120', 16), j = lueur('120,220,170', 16); return [
             { n: 38, spr: [l, l, j], taille: [6, 18], vy: [-64, -24], sway: [4, 14], alpha: [0.3, 0.8], scint: [1.2, 3] }]; }
         return [];
     }

@@ -210,8 +210,6 @@ h1 {
 .ranking-table th.col-pos { text-align: center; width: 90px; }
 
 .ranking-table tbody tr {
-    background: var(--panel-bg);
-    backdrop-filter: blur(12px);
     cursor: pointer;
     opacity: 0;
     animation: slideUp 0.5s forwards;
@@ -220,11 +218,12 @@ h1 {
 
 .ranking-table tbody tr:hover {
     transform: translateX(6px);
-    background: rgba(40, 40, 50, 0.85);
-    box-shadow: -4px 0 20px rgba(255, 255, 255, 0.05);
 }
+.ranking-table tbody tr:hover td { background: rgba(40, 40, 50, 0.85); }
 
 .ranking-table td {
+    background: var(--panel-bg);
+    backdrop-filter: blur(12px);
     padding: 1.1rem 1.4rem;
     border-top: 1px solid var(--border-color);
     border-bottom: 1px solid var(--border-color);
@@ -803,7 +802,7 @@ a.mini-badge { text-decoration: none; color: inherit; }
 @media (max-width: 760px) {
     /* flou en arrière-plan = très coûteux sur mobile : on le retire, fonds pleins à la place */
     * { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
-    .ranking-table tbody tr, .stat-card, .panel, .armory-card, .tile, .archive-card { background: var(--panel-solid); }
+    .ranking-table td, .stat-card, .panel, .armory-card, .tile, .archive-card { background: var(--panel-solid); }
     /* le tableau du classement tient toujours dans l'écran */
     .ranking-table { table-layout: fixed; width: 100%; }
     .ranking-table th { font-size: 0.58rem; letter-spacing: 0.5px; padding: 0.6rem 0.2rem; overflow-wrap: anywhere; }

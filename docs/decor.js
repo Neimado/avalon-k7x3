@@ -219,9 +219,10 @@
         courant = por;
     }
     // thèmes qui ont de vraies illustrations (themes/<nom>-wide.webp et -tall.webp) ; sinon on garde les dessins en code
-    const IMAGES = { halloween: 1, noel: 1, nouvelan: 1, valentin: 1, paques: 2, anniversaire: 2 };   // 2 = voile renforcé (image claire au centre)
-    const CSS_IMG = `#decor .bg{position:absolute;inset:0;background-size:cover;background-position:center bottom;background-repeat:no-repeat}#decor .bg.tall{display:none}
-@media (max-aspect-ratio:19/20){#decor .bg.wide{display:none}#decor .bg.tall{display:block}}
+    const IMAGES = { halloween: 1, noel: 1, nouvelan: 1, valentin: 1, paques: 2, anniversaire: 2, resolutions: 2 };   // 2 = voile renforcé (image claire au centre)
+    const CSS_IMG = `#decor .bg{position:absolute;inset:0;background-size:cover;background-position:center bottom;background-repeat:no-repeat}#decor .bg.tall,#decor .bg.ultra{display:none}
+@media (min-aspect-ratio:2/1){#decor.has-ultra .bg.wide{display:none}#decor.has-ultra .bg.ultra{display:block}}
+@media (max-aspect-ratio:19/20){#decor .bg.wide,#decor.has-ultra .bg.ultra{display:none}#decor .bg.tall{display:block}}
 #decor .voile{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.5) 0,rgba(0,0,0,0) 26%),radial-gradient(ellipse 62% 58% at 50% 46%,rgba(0,0,0,.4),rgba(0,0,0,0) 100%)}
 #decor .voile.fort{background:linear-gradient(180deg,rgba(0,0,0,.62) 0,rgba(0,0,0,.34) 42%,rgba(0,0,0,.22) 100%),radial-gradient(ellipse 72% 66% at 50% 48%,rgba(0,0,0,.6),rgba(0,0,0,0) 100%)}`;
     window.AVDecor = {
@@ -237,6 +238,10 @@
             sonde.onload = () => {
                 box.innerHTML = `<div class="bg wide" style="background-image:url('themes/${nom}-wide.webp')"></div><div class="bg tall" style="background-image:url('themes/${nom}-tall.webp')"></div><div class="voile${IMAGES[nom] > 1 ? ' fort' : ''}"></div>`;
                 box.classList.add('img');
+                // image facultative pour écrans très larges (21:9) : themes/<nom>-ultra.webp
+                const u = new Image();
+                u.onload = () => { const el = document.createElement('div'); el.className = 'bg ultra'; el.style.backgroundImage = `url('themes/${nom}-ultra.webp')`; box.insertBefore(el, box.querySelector('.voile')); box.classList.add('has-ultra'); };
+                u.src = `themes/${nom}-ultra.webp`;
             };
             sonde.onerror = svg;
             sonde.src = src;
